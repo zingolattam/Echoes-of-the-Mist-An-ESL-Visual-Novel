@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Echoes of the Mist</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #020617;
+      overflow: hidden;
+      margin: 0;
+    }
+    .serif {
+      font-family: 'Crimson Pro', serif;
+    }
+    .vn-gradient {
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.6), rgba(2, 6, 23, 0.98));
+      backdrop-filter: blur(12px);
+    }
+    
+    /* Global Overlay for Atmosphere */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.3;
+    }
+
+    /* 
+       CSS ASSET REBINDING SYSTEM 
+       Maps the broken local paths to remote high-quality URLs 
+    */
+    
+    /* Backgrounds */
+    img[src="backgrounds/bedroom_morning.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/bedroom_morning.jpg"); }
+    img[src="backgrounds/hallway_golden.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/hallway_golden.jpg"); }
+    img[src="backgrounds/kitchen_warm.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/kitchen_warm.jpg"); }
+    img[src="backgrounds/library_dust.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/library_dust.jpg"); }
+    img[src="backgrounds/tower_stars.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/tower_stars.jpg"); }
+    img[src="backgrounds/garden_sunny.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/garden_sunny.jpg"); }
+
+    /* Characters */
+    img[src="characters/Shadow.png"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/Shadow.jpg"); }
+    img[src="characters/Mrs. Gable.png"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/Mrs.%20Gable.jpg"); }
+    img[src="characters/Umbrella Girl.png"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/Umbrella%20Girl.jpg"); }
+
+    /* Overriding App.tsx onError visibility logic */
+    img[alt="scene-background"], 
+    img[alt="Shadow"], 
+    img[alt="Mrs. Gable"], 
+    img[alt="Umbrella Girl"] {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      min-width: 100px;
+      min-height: 100px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
