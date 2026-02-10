@@ -42,7 +42,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ text, speed = 30, skip = fa
         return (
           <strong 
             key={i} 
-            className="text-amber-400 font-bold drop-shadow-[0_0_8px_rgba(251,191,36,0.4)]"
+            className="text-amber-300 font-bold px-1 rounded-sm bg-amber-500/10 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)] border-b border-amber-500/20"
           >
             {part.slice(2, -2)}
           </strong>
@@ -53,9 +53,9 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ text, speed = 30, skip = fa
   };
 
   return (
-    <p className="leading-relaxed text-lg md:text-xl text-slate-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-light">
+    <div className="leading-relaxed text-xl md:text-2xl text-slate-50 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] font-light tracking-wide min-h-[5em]">
       {renderFormattedText(displayedText)}
-    </p>
+    </div>
   );
 };
 
