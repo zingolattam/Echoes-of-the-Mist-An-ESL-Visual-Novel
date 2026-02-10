@@ -17,11 +17,11 @@
       font-family: 'Crimson Pro', serif;
     }
     .vn-gradient {
-      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(2, 6, 23, 0.98));
-      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.6), rgba(2, 6, 23, 0.98));
+      backdrop-filter: blur(12px);
     }
     
-    /* Atmosphere Layer: Mist & Scanlines */
+    /* Atmosphere Layer */
     body::after {
       content: "";
       position: fixed;
@@ -29,21 +29,19 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: 
-        radial-gradient(circle at center, transparent 40%, rgba(2, 6, 23, 0.6) 100%),
-        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-      background-size: 100% 100%, 100% 3px;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+      background-size: 100% 2px, 3px 100%;
       pointer-events: none;
       z-index: 100;
-      opacity: 0.4;
+      opacity: 0.3;
     }
 
     /* 
        CSS ASSET REBINDING SYSTEM 
-       Directly maps internal App.tsx paths to the provided public links.
+       Directly intercepts the local paths in App.tsx and substitutes high-quality remote URLs.
     */
     
-    /* Background Mapping */
+    /* Backgrounds */
     img[src="backgrounds/bedroom_morning.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/bedroom_morning.jpg"); }
     img[src="backgrounds/hallway_golden.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/hallway_golden.jpg"); }
     img[src="backgrounds/kitchen_warm.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/kitchen_warm.jpg"); }
@@ -51,43 +49,31 @@
     img[src="backgrounds/tower_stars.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/tower_stars.jpg"); }
     img[src="backgrounds/garden_sunny.jpg"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/garden_sunny.jpg"); }
 
-    /* Character Mapping */
+    /* Characters */
     img[src="characters/Shadow.png"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/Shadow.jpg"); }
     img[src="characters/Mrs. Gable.png"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/Mrs.%20Gable.jpg"); }
     img[src="characters/Umbrella Girl.png"] { content: url("https://daily-ivory-ddrnucaisn.edgeone.app/Umbrella%20Girl.jpg"); }
 
-    /* Visual Overrides for App components */
+    /* Fix: Ensure images are visible despite App.tsx onError hide logic */
     img[alt="scene-background"], 
-    img[src^="characters/"] {
+    img[alt="Shadow"], 
+    img[alt="Mrs. Gable"], 
+    img[alt="Umbrella Girl"],
+    img[src^="characters/"],
+    img[src^="backgrounds/"] {
       display: block !important;
       opacity: 1 !important;
       visibility: visible !important;
-      object-fit: cover;
-    }
-
-    img[src^="characters/"] {
-      object-fit: contain;
-      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.8));
+      min-width: 50px;
+      min-height: 50px;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .fade-in {
+    .animate-fade-in {
       animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0f172a;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #fbbf24;
-      border-radius: 10px;
     }
   </style>
 <script type="importmap">
@@ -103,7 +89,7 @@
 </head>
 <body>
   <div id="root"></div>
-  <!-- CRITICAL: Added entry point script to prevent black screen -->
+  <!-- CRITICAL: Added script entry point to mount the React application -->
   <script type="module" src="index.tsx"></script>
 </body>
 </html>
